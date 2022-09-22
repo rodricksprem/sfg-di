@@ -12,6 +12,19 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class SfgDiApplication {
 
+	/*
+	Parameter 0 of constructor in guru.springframework.sfgdi.controller.ConstructorInjectedController required a single bean, but 4 were found:
+	- constructorInjectedGreetingService: defined in file [D:\studyguides\Spring\spring5guruprojects\branches_sfg_di\master\sfg-di\target\classes\guru\springframework\sfgdi\services\ConstructorInjectedGreetingService.class]
+	- greetingServiceImpl: defined in file [D:\studyguides\Spring\spring5guruprojects\branches_sfg_di\master\sfg-di\target\classes\guru\springframework\sfgdi\services\GreetingServiceImpl.class]
+	- propertyInjectedGreetingService: defined in file [D:\studyguides\Spring\spring5guruprojects\branches_sfg_di\master\sfg-di\target\classes\guru\springframework\sfgdi\services\PropertyInjectedGreetingService.class]
+	- setterInjectedGreetingService: defined in file [D:\studyguides\Spring\spring5guruprojects\branches_sfg_di\master\sfg-di\target\classes\guru\springframework\sfgdi\services\SetterInjectedGreetingService.class]
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+	 */
 	public static void main(String[] args) {
 	ApplicationContext ctx= SpringApplication.run(SfgDiApplication.class, args);
 	MyController myController =(MyController) ctx.getBean("myController");
