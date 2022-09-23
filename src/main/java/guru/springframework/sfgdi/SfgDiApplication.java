@@ -4,9 +4,16 @@ import guru.springframework.sfgdi.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
+import org.springframework.context.annotation.ComponentScan;
+/*
+ComponentScan is required if the Spring streotype components are in different package altogether .
+ex:com.springframework.pets.services
+@ComponentScan(basePackages = {"guru.springframework.sfgdi","com.springframework.pets.services"})
+As we have added javaconfiguration @Bean ,no need for componentscan
+*/
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"guru.springframework.sfgdi","com.springframework.pets"})
 public class SfgDiApplication {
 
 	/*
