@@ -41,6 +41,7 @@ org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse 
 	ConstructorInjectedController constructorInjectedController =(ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 	System.out.println(constructorInjectedController.getGreeting());
 
+
 	}
 
 }
