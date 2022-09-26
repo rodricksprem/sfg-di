@@ -8,19 +8,22 @@ import guru.springframework.sfgdi.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdi.services.*;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 // using @Configuration and @Bean to avoid component scanning for various stereotype
 @Configuration
+@EnableConfigurationProperties(SfgConstructorConfiguration.class)
 public class GreetingServiceConfig {
 
+
     @Bean
-    FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration){
+    FakeDataSource fakeDataSource(SfgConstructorConfiguration sfgConstructorConfiguration){
 
         FakeDataSource fakeDataSource=  new FakeDataSource();
-        fakeDataSource.setPassword(sfgConfiguration.getPassword());
-        fakeDataSource.setUserName(sfgConfiguration.getUserName());
-        fakeDataSource.setJdbcURL(sfgConfiguration.getJdbcURL());
+        fakeDataSource.setPassword(sfgConstructorConfiguration.getPassword());
+        fakeDataSource.setUserName(sfgConstructorConfiguration.getUserName());
+        fakeDataSource.setJdbcURL(sfgConstructorConfiguration.getJdbcURL());
         return  fakeDataSource;
     }
     @Bean(name = "constructorInjectedGreetingService")
