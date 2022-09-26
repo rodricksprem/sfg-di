@@ -1,6 +1,9 @@
 spring:
   profiles:
-    active: dog,EN,dev
+    active:
+     - dog
+     - EN
+     - dev
 guru:
   username: superuser
   password: dbPassword

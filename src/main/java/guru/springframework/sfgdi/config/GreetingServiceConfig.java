@@ -7,7 +7,7 @@ import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdi.services.*;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.context.annotation.*;
 
 // using @Configuration and @Bean to avoid component scanning for various stereotype
@@ -15,13 +15,12 @@ import org.springframework.context.annotation.*;
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${guru.username}") String userName, @Value("${guru.password}") String password
-            ,@Value("${guru.jdbcURL}") String jdbcURL){
+    FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration){
 
         FakeDataSource fakeDataSource=  new FakeDataSource();
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setUserName(userName);
-        fakeDataSource.setJdbcURL(jdbcURL);
+        fakeDataSource.setPassword(sfgConfiguration.getPassword());
+        fakeDataSource.setUserName(sfgConfiguration.getUserName());
+        fakeDataSource.setJdbcURL(sfgConfiguration.getJdbcURL());
         return  fakeDataSource;
     }
     @Bean(name = "constructorInjectedGreetingService")
