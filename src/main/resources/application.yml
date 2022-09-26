@@ -1,7 +1,22 @@
 spring:
   profiles:
-    active: dog,EN
+    active: dog,EN,dev
 guru:
   username: superuser
   password: dbPassword
   jdbcURL: someUrlforDB
+
+---
+spring:
+  profiles: dev
+guru:
+  username: devsuperuser
+  password: devdbPassword
+  jdbcURL: devsomeUrlforDB
+---
+spring:
+  profiles: prod
+guru:
+  username: prodsuperuser
+  password: proddbPassword
+  jdbcURL: prodsomeUrlforDB
