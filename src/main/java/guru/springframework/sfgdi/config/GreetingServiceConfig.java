@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
 // using @Configuration and @Bean to avoid component scanning for various stereotype
-@PropertySource("datasource.properties")
 @Configuration
 public class GreetingServiceConfig {
 
