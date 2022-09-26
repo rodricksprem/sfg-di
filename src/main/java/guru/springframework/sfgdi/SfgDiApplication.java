@@ -1,6 +1,8 @@
 package guru.springframework.sfgdi;
 
 import guru.springframework.sfgdi.controller.*;
+import guru.springframework.sfgdi.services.PrototypeBean;
+import guru.springframework.sfgdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -41,6 +43,36 @@ org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse 
 	ConstructorInjectedController constructorInjectedController =(ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 	System.out.println(constructorInjectedController.getGreeting());
 
+		System.out.println("------ Singleton Bean");
+		SingletonBean singletonBean =ctx.getBean("singletonBean", SingletonBean.class);
+		singletonBean.setValue(10);
+		System.out.println(singletonBean.getValue());
+
+		System.out.println("------ Singleton Bean");
+		SingletonBean singletonBeanOne =ctx.getBean("singletonBean", SingletonBean.class);
+		System.out.println(singletonBeanOne.getValue());
+
+
+		System.out.println("------ Singleton Bean");
+		SingletonBean singletonBeanTwo =ctx.getBean("singletonBean", SingletonBean.class);
+		System.out.println(singletonBeanTwo.getValue());
+
+
+
+		System.out.println("------ Prototype Bean");
+		PrototypeBean prototypeBean =ctx.getBean("prototypeBean", PrototypeBean.class);
+		prototypeBean.setValue(10);
+		System.out.println(prototypeBean.getValue());
+
+		System.out.println("------ Prototype Bean");
+		PrototypeBean prototypeBeanNew =ctx.getBean("prototypeBean", PrototypeBean.class);
+		prototypeBean.setValue(20);
+		System.out.println(prototypeBean.getValue());
+
+
+		System.out.println("------ Prototype Bean");
+		PrototypeBean prototypeBeanSecond =ctx.getBean("prototypeBean", PrototypeBean.class);
+		System.out.println(prototypeBean.getValue());
 
 	}
 
