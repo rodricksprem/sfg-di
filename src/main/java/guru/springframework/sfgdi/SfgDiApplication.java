@@ -1,6 +1,7 @@
 package guru.springframework.sfgdi;
 
 import guru.springframework.sfgdi.controller.*;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.services.PrototypeBean;
 import guru.springframework.sfgdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -67,12 +68,18 @@ org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse 
 		System.out.println("------ Prototype Bean");
 		PrototypeBean prototypeBeanNew =ctx.getBean("prototypeBean", PrototypeBean.class);
 		prototypeBean.setValue(20);
-		System.out.println(prototypeBean.getValue());
+		System.out.println(prototypeBeanNew.getValue());
 
 
 		System.out.println("------ Prototype Bean");
 		PrototypeBean prototypeBeanSecond =ctx.getBean("prototypeBean", PrototypeBean.class);
-		System.out.println(prototypeBean.getValue());
+		System.out.println(prototypeBeanSecond.getValue());
+
+		System.out.println("------ Fake Data source ");
+		FakeDataSource fakeDataSource = ctx.getBean("fakeDataSource",FakeDataSource.class);
+		System.out.println(fakeDataSource.getUserName());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcURL());
 
 	}
 

@@ -3,19 +3,28 @@ package guru.springframework.sfgdi.config;
 
 import com.springframework.pets.services.PetService;
 import com.springframework.pets.services.PetServiceFactory;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdi.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 
 // using @Configuration and @Bean to avoid component scanning for various stereotype
-
+@PropertySource("datasource.properties")
 @Configuration
 public class GreetingServiceConfig {
 
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${guru.username}") String userName, @Value("${guru.password}") String password
+            ,@Value("${guru.jdbcURL}") String jdbcURL){
+
+        FakeDataSource fakeDataSource=  new FakeDataSource();
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setUserName(userName);
+        fakeDataSource.setJdbcURL(jdbcURL);
+        return  fakeDataSource;
+    }
     @Bean(name = "constructorInjectedGreetingService")
     ConstructorInjectedGreetingService getConstructorGreetingService(){
         return  new ConstructorInjectedGreetingService();
