@@ -1,0 +1,4 @@
+guru:
+  username: qasuperuser
+  password: qadbPassword
+  jdbcURL: qasomeUrlforDB
